@@ -14,5 +14,5 @@ typedef struct movie
 void showMovie(int fd, FILE *fp_m);
 void inputMovie(int fd, FILE *fp_m);
 void updateMovie(int fd, FILE *fp_m);
-void deleteMovie(int fd, FILE *fp_m);
+void deleteMovie(int fd, FILE **fp_m);
 void searchMovie(int fd, FILE *fp_m);

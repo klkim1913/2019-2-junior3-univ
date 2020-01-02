@@ -28,7 +28,8 @@ void runServer() {
 
 	server_sockfd = socket(AF_INET, SOCK_STREAM, 0);
 	server_address.sin_family = AF_INET;
-	server_address.sin_addr.s_addr = htons(9734);
+	server_address.sin_addr.s_addr = htonl(INADDR_ANY);
+	server_address.sin_port = htons(9734);
 	server_len = sizeof(server_address);
 	bind(server_sockfd, (struct sockaddr*) &server_address, server_len);
 
@@ -107,7 +108,7 @@ void runMovie(int fd, FILE *fp_m) {
 			updateMovie(fd, fp_m);
 			break;
 		case 4:
-			deleteMovie(fd, fp_m);
+			deleteMovie(fd, &fp_m);
 			break;
 		case 5:
 			searchMovie(fd, fp_m);

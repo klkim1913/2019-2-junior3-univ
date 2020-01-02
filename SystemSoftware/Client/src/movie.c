@@ -59,9 +59,8 @@ void updateMovie(int fd) {
 				&record.overAge) == 7) {
 			write(fd, &record, sizeof(record));
 		}
-	}
-	else {
-		printf("id %d 없음\n");
+	} else {
+		printf("id %d 없음\n", id);
 	}
 }
 
@@ -70,10 +69,20 @@ void deleteMovie(int fd) {
 	int id;
 
 	printf("삭제 id: ");
-	scanf("%d",&id);
-	write(fd,&id,sizeof(id));
+	scanf("%d", &id);
+	write(fd, &id, sizeof(id));
 }
 
 void searchMovie(int fd) {
+	MOVIE record;
+	int id;
 
+	printf("검색 id: ");
+	scanf("%d", &id);
+	write(fd, &id, sizeof(id));
+	read(fd, &record, sizeof(record));
+	if (record.id > 0) {
+		printf("%d %s %d %d %s %d %d", record.id, record.date, record.runTime,
+				record.place, record.title, record.price, record.overAge);
+	}
 }
